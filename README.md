@@ -129,7 +129,7 @@ let bind (handler : HttpHandler) =
         async {
             let! ctxOpt = result
             match ctxOpt with
-            | None   -> return None
+            | None     -> return None
             | Some ctx ->
                 match ctx.Response.HasStarted with
                 | true  -> return  Some ctx
@@ -753,7 +753,7 @@ let model = { WelcomeText = "Hello World" }
 let app = 
     choose [
         // Assuming there is a view called "Index.cshtml"
-        route  "/" >=> razorView "text/html" "Index" model
+        route  "/" >=> razorView "text/html" "Index" model
     ]
 ```
 
@@ -783,7 +783,7 @@ let model = { WelcomeText = "Hello World" }
 let app = 
     choose [
         // Assuming there is a view called "Index.cshtml"
-        route  "/" >=> razorHtmlView "Index" model
+        route  "/" >=> razorHtmlView "Index" model
     ]
 ```
 

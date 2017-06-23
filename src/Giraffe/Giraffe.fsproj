@@ -1,4 +1,4 @@
-﻿<Project Sdk="FSharp.NET.Sdk;Microsoft.NET.Sdk">
+﻿<Project Sdk="FSharp.NET.Sdk;Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <AssemblyName>Giraffe</AssemblyName>
@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <Compile Include="Common.fs" />
+    <Compile Include="Tasks.fs" />
     <Compile Include="ComputationExpressions.fs" />
     <Compile Include="FormatExpressions.fs" />
     <Compile Include="HttpContextExtensions.fs" />

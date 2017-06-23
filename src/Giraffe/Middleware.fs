@@ -30,7 +30,7 @@ type GiraffeMiddleware (next          : RequestDelegate,
     do if isNull next then raise (ArgumentNullException("next"))
 
     member __.Invoke (ctx : HttpContext) =
-        async {
+        task {
             let! result = handler ctx
 
             let logger = loggerFactory.CreateLogger<GiraffeMiddleware>()
@@ -41,10 +41,8 @@ type GiraffeMiddleware (next          : RequestDelegate,
                 |> logger.LogDebug
 
             if (result.IsNone) then
-                return!
-                    next.Invoke ctx
-                    |> Async.AwaitTask
-        } |> Async.StartAsTask
+                return! next.Invoke ctx
+        }
 
 /// ---------------------------
 /// Error Handling middleware
