@@ -4,14 +4,12 @@ open System
 open System.IO
 open System.Reflection
 open System.ComponentModel
-//open System.Threading.Tasks
 open Microsoft.AspNetCore.Http
 open Microsoft.Extensions.Primitives
 open Microsoft.Extensions.Logging
 open Microsoft.FSharp.Reflection
 open Microsoft.Net.Http.Headers
 open Giraffe.Common
-//open Giraffe.Tasks
 
 type HttpContext with
 
@@ -64,7 +62,7 @@ type HttpContext with
 
     member this.BindForm<'T>() =
         task {
-            let! form = this.Request.ReadFormAsync()
+            let! (form : IFormCollection) = this.Request.ReadFormAsync()
             let obj   = Activator.CreateInstance<'T>()
             let props = obj.GetType().GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
             props

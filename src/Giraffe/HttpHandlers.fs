@@ -67,7 +67,7 @@ let private handlerWithRootedPath (path : string) (handler : HttpHandler) =
 let bind (handler : HttpHandler) =
     fun (result : HttpHandlerResult) ->
         task {
-            let! ctxOpt = result
+            let! (ctxOpt : HttpContext option) = result
             match ctxOpt with
             | None     -> return None
             | Some ctx ->

@@ -12,7 +12,7 @@ open Microsoft.AspNetCore.Http
 open Microsoft.AspNetCore.Http.Features
 open Microsoft.Extensions.Logging
 open Microsoft.Extensions.DependencyInjection
-open Giraffe.Task
+open Giraffe.Tasks
 open Giraffe.HttpContextExtensions
 open Giraffe.HttpHandlers
 open Giraffe.Middleware
@@ -28,7 +28,6 @@ open SampleApp.HtmlViews
 let errorHandler (ex : Exception) (logger : ILogger) (ctx : HttpContext) =
     logger.LogError(EventId(0), ex, "An unhandled exception has occurred while executing the request.")
     ctx |> (clearResponse >=> setStatusCode 500 >=> text ex.Message)
-
 
 // ---------------------------------
 // Web app
@@ -57,7 +56,7 @@ let loginHandler =
             let identity = ClaimsIdentity(claims, authScheme)
             let user     = ClaimsPrincipal(identity)
 
-            do! ctx.Authentication.SignInAsync(authScheme, user) //|> task.AwaitTask
+            do! ctx.Authentication.SignInAsync(authScheme, user)
             
             return! text "Successfully logged in" ctx
         }
@@ -93,15 +92,12 @@ let submitCar =
 
 let smallFileUploadHandler =
     fun (ctx : HttpContext) ->
-        task {
-            return!
-                (match ctx.Request.HasFormContentType with
-                | false -> setStatusCode 400 >=> text "Bad request"
-                | true  ->
-                    ctx.Request.Form.Files
-                    |> Seq.fold (fun acc file -> sprintf "%s\n%s" acc file.FileName) ""
-                    |> text) ctx
-        }
+        (match ctx.Request.HasFormContentType with
+        | false -> setStatusCode 400 >=> text "Bad request"
+        | true  ->
+            ctx.Request.Form.Files
+            |> Seq.fold (fun acc file -> sprintf "%s\n%s" acc file.FileName) ""
+            |> text) ctx
 
 let largeFileUploadHandler =
     fun (ctx : HttpContext) ->

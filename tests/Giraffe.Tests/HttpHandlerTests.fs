@@ -87,6 +87,7 @@ let ``GET "/" returns "Hello World"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -112,6 +113,7 @@ let ``GET "/foo" returns "bar"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -137,6 +139,7 @@ let ``GET "/FOO" returns 404 "Not found"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -164,6 +167,7 @@ let ``GET "/json" returns json object`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -193,6 +197,7 @@ let ``POST "/post/1" returns "1"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -222,6 +227,7 @@ let ``POST "/post/2" returns "2"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -251,6 +257,7 @@ let ``PUT "/post/2" returns 404 "Not found"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -287,6 +294,7 @@ let ``GET "/dotLiquid" returns rendered html view`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -321,6 +329,7 @@ let ``POST "/text" with supported Accept header returns "good"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -355,6 +364,7 @@ let ``POST "/json" with supported Accept header returns "json"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -389,6 +399,7 @@ let ``POST "/either" with supported Accept header returns "either"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -423,6 +434,7 @@ let ``POST "/either" with unsupported Accept header returns 404 "Not found"`` ()
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -451,6 +463,7 @@ let ``GET "/JSON" returns "BaR"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -478,6 +491,7 @@ let ``GET "/foo/blah blah/bar" returns "blah blah"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -505,6 +519,7 @@ let ``GET "/foo/johndoe/59" returns "Name: johndoe, Age: 59"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -533,6 +548,7 @@ let ``POST "/POsT/1" returns "1"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -561,6 +577,7 @@ let ``POST "/POsT/523" returns "523"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -593,6 +610,7 @@ let ``GET "/api" returns "api root"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -625,6 +643,7 @@ let ``GET "/api/users" returns "users"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -657,6 +676,7 @@ let ``GET "/api/test" returns "test"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -698,6 +718,7 @@ let ``GET "/api/v2/users" returns "users v2"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -729,6 +750,7 @@ let ``GET "/api/foo/bar/yadayada" returns "yadayada"`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -769,6 +791,7 @@ let ``GET "/person" returns rendered HTML view`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -810,6 +833,7 @@ let ``Get "/auto" with Accept header of "application/json" returns JSON object``
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -851,6 +875,7 @@ let ``Get "/auto" with Accept header of "application/xml; q=0.9, application/jso
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -902,6 +927,7 @@ let ``Get "/auto" with Accept header of "application/xml" returns XML object`` (
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -953,6 +979,7 @@ let ``Get "/auto" with Accept header of "application/xml, application/json" retu
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -994,6 +1021,7 @@ let ``Get "/auto" with Accept header of "application/json, application/xml" retu
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -1045,6 +1073,7 @@ let ``Get "/auto" with Accept header of "application/json; q=0.5, application/xm
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -1096,6 +1125,7 @@ let ``Get "/auto" with Accept header of "application/json; q=0.5, application/xm
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -1141,6 +1171,7 @@ Piercings: [|""ear""; ""nose""|]"
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -1182,6 +1213,7 @@ let ``Get "/auto" with Accept header of "text/html" returns a 406 response`` () 
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -1223,6 +1255,7 @@ let ``Get "/auto" without an Accept header returns a JSON object`` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
 
     match result with
@@ -1248,6 +1281,7 @@ let ``Warbler function should execute inner function each time`` () =
     let result1 = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
         |> (fun res -> getBody res.Value)
 
@@ -1256,6 +1290,7 @@ let ``Warbler function should execute inner function each time`` () =
     let result2 = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
         |> (fun res -> getBody res.Value)
 
@@ -1267,6 +1302,7 @@ let ``Warbler function should execute inner function each time`` () =
     let result3 = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
         |> (fun res -> getBody res.Value)
 
@@ -1275,6 +1311,7 @@ let ``Warbler function should execute inner function each time`` () =
     let result4 = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
         |> (fun res -> getBody res.Value)
 
@@ -1295,6 +1332,7 @@ let ``GET "/redirect" redirect to "/" `` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
     
     match result with
@@ -1317,6 +1355,7 @@ let ``POST "/redirect" redirect to "/" `` () =
     let result = 
         ctx
         |> app
+        |> Async.AwaitTask
         |> Async.RunSynchronously
     
     match result with

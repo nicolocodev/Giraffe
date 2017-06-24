@@ -55,21 +55,17 @@ type GiraffeErrorHandlerMiddleware (next          : RequestDelegate,
     do if isNull next then raise (ArgumentNullException("next"))
 
     member __.Invoke (ctx : HttpContext) =
-        async {
+        task {
             let logger = loggerFactory.CreateLogger<GiraffeErrorHandlerMiddleware>()
             try
-                return!
-                    next.Invoke ctx
-                    |> Async.AwaitTask
+                return! next.Invoke ctx
             with ex ->
                 try
-                    return!
-                        errorHandler ex logger ctx
-                        |> Async.Ignore
+                    do! errorHandler ex logger ctx
                 with ex2 ->
                     logger.LogError(EventId(0), ex,  "An unhandled exception has occurred while executing the request.")
                     logger.LogError(EventId(0), ex2, "An exception was thrown attempting to handle the original exception.")
-        } |> Async.StartAsTask
+        }
 
 /// ---------------------------
 /// Extension methods for convenience

@@ -35,6 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Giraffe\Giraffe.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="RazorEngine.fs" />
     <Compile Include="Middleware.fs" />
     <Compile Include="HttpHandlers.fs" />

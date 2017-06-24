@@ -36,6 +36,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Giraffe\Giraffe.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="HttpHandlers.fs" />
   </ItemGroup>
 
