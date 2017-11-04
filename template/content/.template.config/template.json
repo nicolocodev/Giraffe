@@ -7,5 +7,39 @@
     "language": "F#"
   },
   "shortName": "giraffe",
-  "sourceName": "_AppName"
+  "sourceName": "_AppName",
+  "symbols": {
+    "enablepaket": {
+      "type": "parameter",
+      "dataType": "bool",
+      "defaultValue": "false"
+    }  
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!enablepaket)",
+          "exclude": [ "paket.references" ]
+        }
+      ]
+    }
+  ], 
+  "SpecialCustomOperations": {
+    "**/*.fsproj": {
+      "flagPrefix": "<!--",
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "if": "if",
+            "else": "else",
+            "elseif": "elseif",
+            "endif": "endif",
+            "evaluator": "C++"
+          }
+        }
+      ]
+    }
+  }
 }
